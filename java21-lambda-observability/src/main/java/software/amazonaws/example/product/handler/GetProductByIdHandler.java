@@ -15,8 +15,9 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import software.amazon.awssdk.http.HttpStatusCode;
-import software.amazon.lambda.powertools.logging.Logging;
 import software.amazon.lambda.powertools.logging.CorrelationIdPaths;
+import software.amazon.lambda.powertools.logging.Logging;
+import software.amazon.lambda.powertools.metrics.Metrics;
 import software.amazon.lambda.powertools.tracing.CaptureMode;
 import software.amazon.lambda.powertools.tracing.Tracing;
 import software.amazon.lambda.powertools.tracing.TracingUtils;
@@ -35,8 +36,7 @@ public class GetProductByIdHandler
 	@Override
 	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
     @Tracing(namespace ="ProductAPIWithPowerTools", captureMode = CaptureMode.RESPONSE_AND_ERROR)
-    //@Metrics(namespace = "ProductAPIWithPowerTools", service = "product", captureColdStart = true)
-	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
+    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		String id = requestEvent.getPathParameters().get("id");
 		Optional<Product> optionalProduct = productDao.getProduct(id);
         try {
