@@ -37,6 +37,11 @@ public class DynamoProductDao implements ProductDao {
     .overrideConfiguration(ClientOverrideConfiguration.builder()
       .build())
     .build();
+  
+  @Override
+  public DynamoDbClient getDynamoDbClient() {
+	  return dynamoDbClient;
+  }
 
   @Override
   public Optional<Product> getProduct(String id) {
