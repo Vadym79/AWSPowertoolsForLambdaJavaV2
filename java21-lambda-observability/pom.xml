@@ -80,11 +80,6 @@
         <version>${powertools.version}</version>
     </dependency>
     <dependency>
-         <groupId>software.amazon.lambda</groupId>
-         <artifactId>powertools-idempotency-dynamodb</artifactId>
-         <version>${powertools.version}</version>
-    </dependency>
-    <dependency>
         <groupId>software.amazon.lambda</groupId>
         <artifactId>powertools-logging-log4j</artifactId>
        <version>${powertools.version}</version>
@@ -184,14 +179,6 @@
                      <aspectLibrary>
                          <groupId>software.amazon.lambda</groupId>
                          <artifactId>powertools-metrics</artifactId>
-                     </aspectLibrary>
-                      <aspectLibrary>
-                         <groupId>software.amazon.lambda</groupId>
-                         <artifactId>powertools-idempotency-dynamodb</artifactId>
-                     </aspectLibrary>
-                      <aspectLibrary>
-                         <groupId>software.amazon.lambda</groupId>
-                         <artifactId>powertools-idempotency-core</artifactId>
                      </aspectLibrary>
                  </aspectLibraries>
              </configuration>

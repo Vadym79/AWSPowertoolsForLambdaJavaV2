@@ -3,7 +3,6 @@
 
 package software.amazonaws.example.product.dao;
 
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazonaws.example.product.entity.Product;
 import software.amazonaws.example.product.entity.Products;
 
@@ -19,5 +18,4 @@ public interface ProductDao {
 
   Products getAllProduct();
   
-  DynamoDbClient getDynamoDbClient();
 }
