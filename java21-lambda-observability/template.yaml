@@ -15,8 +15,8 @@ Globals:
   Function:
     CodeUri: target/aws-java21-lambda-powertools-observability-1.0.0-SNAPSHOT.jar
     Runtime: java21
-    #SnapStart:
-     #ApplyOn: PublishedVersions     
+    SnapStart:
+     ApplyOn: PublishedVersions     
     Timeout: 30 
     MemorySize: 1024
     Architectures:
@@ -27,7 +27,9 @@ Globals:
       Variables:
         JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
         POWERTOOLS_LOG_LEVEL: INFO
+        #POWERTOOLS_SERVICE_NAME: product-service
         PRODUCT_TABLE_NAME: !Ref ProductsTable
+          
 
 Resources:
   MyApi:
@@ -112,12 +114,12 @@ Resources:
             Method: get     
             
             
-  GetProductByIdWithPrimingFunction:
+  GetProductByIdWithDynamoDBPrimingFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetProductByIdWithPrimingWithPTObservability
+      FunctionName: GetProductByIdWithDynamoDBPrimingWithPTObservability
       AutoPublishAlias: liveVersion
-      Handler: software.amazonaws.example.product.handler.GetProductByIdWithPrimingHandler::handleRequest
+      Handler: software.amazonaws.example.product.handler.GetProductByIdWithDynamoDBPrimingHandler::handleRequest
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ProductsTable
@@ -126,10 +128,26 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyApi
-            Path: /productsWithPriming/{id}
+            Path: /productsWithDynamoDBPriming/{id}
             Method: get     
             
-             
+  GetProductByIdWithObservabilityPrimingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: GetProductByIdWithObservabilityPrimingWithPTObservability
+      AutoPublishAlias: liveVersion
+      Handler: software.amazonaws.example.product.handler.GetProductByIdWithObservabilityPrimingHandler::handleRequest
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ProductsTable
+      Events:
+        GetRequestById:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /productsWithObservabilityPriming/{id}
+            Method: get 
+     
   PutProductFunction:
     Type: AWS::Serverless::Function
     Properties:
