@@ -15,8 +15,8 @@ Globals:
   Function:
     CodeUri: target/aws-java21-lambda-powertools-idempotency-1.0.0-SNAPSHOT.jar
     Runtime: java21
-    #SnapStart:
-     #ApplyOn: PublishedVersions     
+    SnapStart:
+     ApplyOn: PublishedVersions     
     Timeout: 30 
     MemorySize: 1024
     Architectures:
@@ -26,7 +26,8 @@ Globals:
     Environment:
       Variables:
         JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
-        POWERTOOLS_LOG_LEVEL: INFO
+        POWERTOOLS_LOG_LEVEL: WARN
+        POWERTOOLS_SERVICE_NAME: product-service
         PRODUCT_TABLE_NAME: !Ref ProductsTable
         IDEMPOTENCY_TABLE_NAME: !Ref IdempotencyTable
 
@@ -118,31 +119,6 @@ Resources:
       LogGroupName: !Sub "/aws/lambda/${GetProductByIdFunction}"
       RetentionInDays: 7
 
-            
-  GetProductByIdWithPrimingFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: GetProductByIdWithPrimingWithPTIdempotency
-      AutoPublishAlias: liveVersion
-      Handler: software.amazonaws.example.product.handler.GetProductByIdWithPrimingHandler::handleRequest
-      Policies:
-        - DynamoDBReadPolicy:
-            TableName: !Ref ProductsTable
-      Events:
-        GetRequestById:
-          Type: Api
-          Properties:
-            RestApiId: !Ref MyApi
-            Path: /productsWithPriming/{id}
-            Method: get     
-            
-
-  GetProductByIdWithPrimingFunctionLogGroup:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: !Sub "/aws/lambda/${GetProductByIdWithPrimingFunction}"
-      RetentionInDays: 7
-
 
   PutProductFunction:
     Type: AWS::Serverless::Function
@@ -168,6 +144,59 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub "/aws/lambda/${PutProductFunction}"
+      RetentionInDays: 7
+
+
+  PutProductWithDynamoDBPrimingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PutProductWithDynamoDBPrimingWithPTIdempotency
+      AutoPublishAlias: liveVersion 
+      Handler: software.amazonaws.example.product.handler.CreateProductWithDynamoDBPrimingHandler::handleRequest
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IdempotencyTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+
+      Events:
+        PutRequest:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /productsWithDynamoDBPriming
+            Method: put
+
+  PutProductWithDynamoDBPrimingFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${PutProductWithDynamoDBPrimingFunction}"
+      RetentionInDays: 7
+
+  PutProductWithDynamoDBIdempotencyPrimingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PutProductWithDynamoDBIdempotencyPrimingWithPTIdempotency
+      AutoPublishAlias: liveVersion 
+      Handler: software.amazonaws.example.product.handler.CreateProductWithDynamoDBIdempotencyPrimingHandler::handleRequest
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IdempotencyTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+
+      Events:
+        PutRequest:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /productsWithDynamoDBIdempotencyPriming
+            Method: put
+
+  PutProductWithDynamoDBIdempotencyPrimingFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${PutProductWithDynamoDBIdempotencyPrimingFunction}"
       RetentionInDays: 7
 
   ProductsTable:
