@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ${LAMBDA_TASK_ROOT:-.}
+
+./aws-lambda-graalvm-23-native-image-powertools-observability
