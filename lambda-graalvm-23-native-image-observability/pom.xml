@@ -177,7 +177,6 @@
 						</executions>
 						<configuration>
 							<skip>false</skip>
-							<imageName>native</imageName>
 							<buildArgs>
 							   <buildArg>--no-fallback</buildArg>
 							   <buildArg>-H:ReflectionConfigurationFiles=./src/main/reflect.json</buildArg>
@@ -232,6 +231,25 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>versions-maven-plugin</artifactId>
 						<version>${versions-maven-plugin.version}</version>
+					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>native-zip</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<inherited>false</inherited>
+							</execution>
+						</executions>
+						<configuration>
+							<finalName>function</finalName>
+							<descriptors>
+								<descriptor>src/assembly/native.xml</descriptor>
+							</descriptors>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
