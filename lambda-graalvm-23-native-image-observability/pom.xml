@@ -173,6 +173,7 @@
 						<configuration>
 							<skip>false</skip>
 							<buildArgs>
+							   <buildArg>--enable-http</buildArg>
 							   <buildArg>--no-fallback</buildArg>
 							   <buildArg>-H:ReflectionConfigurationFiles=./src/main/reflect.json</buildArg>
 							</buildArgs>
