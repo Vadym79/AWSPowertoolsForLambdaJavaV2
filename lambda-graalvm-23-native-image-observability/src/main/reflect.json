@@ -51,5 +51,11 @@
     "allPublicConstructors": true,
     "allDeclaredFields": true,
     "allPublicMethods": true
+  },
+    {
+    "name": "com.amazonaws.services.lambda.runtime.LambdaRuntime",
+    "allPublicConstructors": true,
+    "allDeclaredFields": true,
+    "allPublicMethods": true
   }
 ]
