@@ -2,4 +2,4 @@
 
 cd ${LAMBDA_TASK_ROOT:-.}
 
-./aws-lambda-graalvm-23-native-image-powertools-observability
+./aws-lambda-graalvm-23-native-image-powertools-observability $_HANDLER
