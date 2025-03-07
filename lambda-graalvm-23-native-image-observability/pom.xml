@@ -180,7 +180,7 @@
 							<imageName>native</imageName>
 							<buildArgs>
 							   <buildArg>--no-fallback</buildArg>
-							   <buildArg>-H:ReflectionConfigurationFiles=../src/main/reflect.json</buildArg>
+							   <buildArg>-H:ReflectionConfigurationFiles=/src/main/reflect.json</buildArg>
 							</buildArgs>
 							<classpath>
 								<param>
