@@ -148,7 +148,7 @@
 						<executions>
 							<execution>
 								<phase>package</phase>
-								<goals>
+								<goals> 
 									<goal>shade</goal>
 								</goals>
 								<configuration>
