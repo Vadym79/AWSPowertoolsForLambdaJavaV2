@@ -78,6 +78,11 @@
 			<version>${powertools.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>software.amazon.lambda</groupId>
+			<artifactId>powertools-logging-log4j</artifactId>
+			<version>${powertools.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${aspectj.version}</version>
