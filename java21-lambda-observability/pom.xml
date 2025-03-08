@@ -29,6 +29,19 @@
       <dependency>
          <groupId>software.amazon.awssdk</groupId>
          <artifactId>dynamodb</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>software.amazon.awssdk</groupId>
+					<artifactId>netty-nio-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>software.amazon.awssdk</groupId>
+					<artifactId>apache-client</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>compile</scope>
+		</dependency>
+
          <scope>compile</scope>
       </dependency>
       <dependency>
@@ -45,20 +58,6 @@
          <groupId>com.amazonaws</groupId>
          <artifactId>aws-lambda-java-events</artifactId>
          <version>3.14.0</version>
-      </dependency>
-      <dependency>
-         <groupId>software.amazon.awssdk</groupId>
-         <artifactId>lambda</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>software.amazon.awssdk</groupId>
-               <artifactId>netty-nio-client</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>software.amazon.awssdk</groupId>
-               <artifactId>apache-client</artifactId>
-            </exclusion>
-         </exclusions>
       </dependency>
      <dependency>
         <groupId>software.amazon.awssdk</groupId>
