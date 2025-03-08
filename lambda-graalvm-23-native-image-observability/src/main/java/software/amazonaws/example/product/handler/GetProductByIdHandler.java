@@ -5,8 +5,8 @@ package software.amazonaws.example.product.handler;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -30,7 +30,7 @@ public class GetProductByIdHandler
 	private static final ProductDao productDao = new DynamoProductDao();
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	
-	private static final Logger logger = LoggerFactory.getLogger(GetProductByIdHandler.class);
+	private final static Logger logger = LogManager.getLogger(GetProductByIdHandler.class);
 
 	@Override
 	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)

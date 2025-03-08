@@ -15,9 +15,9 @@
 		<release.version>21</release.version>
 		<powertools.version>2.0.0-SNAPSHOT</powertools.version>
 		<aspectj.version>1.9.22.1</aspectj.version>
-		<!--
+
 		<log4j.version>2.25.0-SNAPSHOT</log4j.version>
-		-->
+
 		<versions-maven-plugin.version>2.2</versions-maven-plugin.version>
 	</properties>
 	<repositories>
@@ -29,12 +29,12 @@
 			<id>pt-snapshots</id>
 			<url>https://aws.oss.sonatype.org/content/repositories/snapshots</url>
 		</repository>
-		<!--
+
 		<repository>
 			<id>apache-snapshots</id>
 			<url>https://repository.apache.org/snapshots</url>
 		</repository>
-		-->
+
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -87,7 +87,7 @@
 		</dependency>
 		<dependency>
 			<groupId>software.amazon.lambda</groupId>
-			<artifactId>powertools-logging-logback</artifactId>
+			<artifactId>powertools-logging-log4j</artifactId>
 			<version>${powertools.version}</version>
 		</dependency>
 		<dependency>
@@ -100,17 +100,24 @@
 			<artifactId>aws-lambda-java-serialization</artifactId>
 			<version>1.1.5</version>
 		</dependency>
+
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.5.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jlib</groupId>
-			<artifactId>jlib-awslambda-logback</artifactId>
-			<version>1.0.0</version>
-			<scope>runtime</scope>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.17</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-lambda-java-runtime-interface-client</artifactId>
