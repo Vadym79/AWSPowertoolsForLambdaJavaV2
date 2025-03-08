@@ -30,9 +30,8 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
 	
 	@Override
 	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
-    @Tracing(namespace ="ProductAPIWithPowerTools", captureMode = CaptureMode.RESPONSE_AND_ERROR)
-    @Metrics(namespace = "ProductAPIWithPowerTools", service = "product", captureColdStart = true)
-    
+    @Tracing(namespace ="ProductAPINativeWithPowerTools", captureMode = CaptureMode.RESPONSE_AND_ERROR)
+    @Metrics(namespace = "ProductAPINativeWithPowerTools", service = "product-ativr", captureColdStart = true)
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		try {
 			context.getLogger().log("create product method invoked ");
@@ -44,6 +43,7 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
 			productDao.putProduct(product);
 			metricsLogger.putMetric("SuccessfulProductCreation", 1, Unit.COUNT);
             metricsLogger.putMetadata("correlation_id", requestEvent.getRequestContext().getRequestId());
+            context.getLogger().log("pushed metrics: ");
 			return new APIGatewayProxyResponseEvent().withStatusCode(HttpStatusCode.CREATED)
 					.withBody("Product with id = " + product.id() + " created");
 		} catch (Exception e) {

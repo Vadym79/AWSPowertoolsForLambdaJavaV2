@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
-    <Appenders>
-        <Console name="JsonAppender" target="SYSTEM_OUT">
-            <JsonTemplateLayout eventTemplateUri="classpath:LambdaJsonLayout.json" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Logger name="software.amazonaws.example.product" level="DEBUG" additivity="false"> 
-           <AppenderRef ref="JsonAppender"/>
-        </Logger>
-         <Root level="info">
-            <AppenderRef ref="JsonAppender"/>
-        </Root>
-    </Loggers>
-</Configuration>
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
