@@ -1,0 +1,14 @@
+[
+   {
+    "name": "org.apache.logging.log4j.layout.template.json.resolver.PowertoolsResolver",
+    "allPublicConstructors": true,
+    "allDeclaredFields": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.apache.logging.log4j.layout.template.json.resolver.PowertoolsResolverFactory",
+    "allPublicConstructors": true,
+    "allDeclaredFields": true,
+    "allPublicMethods": true
+  }
+]
