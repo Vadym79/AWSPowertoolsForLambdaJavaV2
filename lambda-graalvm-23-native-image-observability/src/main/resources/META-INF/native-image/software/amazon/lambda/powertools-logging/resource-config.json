@@ -2,10 +2,10 @@
   "resources": {
     "includes": [
       {
-        "pattern": "LambdaJsonLayout.json\\E"
+        "pattern": "\\QLambdaJsonLayout.json\\E"
       },
       {
-        "pattern": "LambdaEcsLayout.json\\E"
+        "pattern": "\\QLambdaEcsLayout.json\\E"
       }
     ]
   },
