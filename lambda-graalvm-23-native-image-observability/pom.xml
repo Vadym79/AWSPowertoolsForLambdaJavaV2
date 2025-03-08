@@ -159,9 +159,6 @@
 											<mainClass>
 												com.amazonaws.services.lambda.runtime.api.client.AWSLambda</mainClass>
 										</transformer>
-										<transformer>
-											implementation="org.apache.logging.log4j.maven.plugins.shade.transformer.Log4j2PluginCacheFileTransformer"/>
-										</transformer>
 									</transformers>
 									<shadedArtifactAttached>true</shadedArtifactAttached>
 								</configuration>
