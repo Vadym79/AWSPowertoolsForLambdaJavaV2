@@ -1,75 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <groupId>software.amazonaws.example</groupId>
-   <artifactId>aws-lambda-graalvm-23-native-image-powertools-idempotency</artifactId>
-   <version>1.0.0-SNAPSHOT</version>
-   <packaging>${packaging}</packaging>
-   <properties>
-      <packaging>jar</packaging>
-       <maven.compiler.source>21</maven.compiler.source>
-       <maven.compiler.target>21</maven.compiler.target>
-      <jdk.version>21</jdk.version>
-      <release.version>21</release.version>
-      <powertools.version>2.0.0-SNAPSHOT</powertools.version>
-      <aspectj.version>1.9.22.1</aspectj.version>
-	  <log4j.version>2.25.0-SNAPSHOT</log4j.version>
-	  <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
-   </properties>
-   <repositories>
-      <repository>
-         <id>central</id>
-         <url>https://repo.maven.apache.org/maven2</url>
-      </repository>
-      <repository>
-         <id>pt-snapshots</id>
-         <url>https://aws.oss.sonatype.org/content/repositories/snapshots</url>
-      </repository>
-	  <repository>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>software.amazonaws.example</groupId>
+	<artifactId>aws-lambda-graalvm-23-native-image-powertools-idempotency</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>${packaging}</packaging>
+	<properties>
+		<packaging>jar</packaging>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<jdk.version>21</jdk.version>
+		<release.version>21</release.version>
+		<powertools.version>2.0.0-SNAPSHOT</powertools.version>
+		<aspectj.version>1.9.22.1</aspectj.version>
+		<log4j.version>2.25.0-SNAPSHOT</log4j.version>
+		<versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+		<repository>
+			<id>pt-snapshots</id>
+			<url>https://aws.oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+		<repository>
 			<id>apache-snapshots</id>
 			<url>https://repository.apache.org/snapshots</url>
-	  </repository>
-   </repositories>
-   <dependencies>
-      <dependency>
-         <groupId>software.amazon.awssdk</groupId>
-         <artifactId>dynamodb</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>software.amazon.awssdk</groupId>
-               <artifactId>netty-nio-client</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>software.amazon.awssdk</groupId>
-               <artifactId>apache-client</artifactId>
-            </exclusion>
-         </exclusions>
-         <scope>compile</scope>
-      </dependency>
-      <dependency>
-         <groupId>com.amazonaws</groupId>
-         <artifactId>aws-lambda-java-core</artifactId>
-         <version>1.2.3</version>
-      </dependency>
-      <dependency>
-         <groupId>com.amazonaws</groupId>
-         <artifactId>aws-lambda-java-events</artifactId>
-         <version>3.14.0</version>
-      </dependency>
-     <dependency>
-        <groupId>software.amazon.awssdk</groupId>
-        <artifactId>apache-client</artifactId>
-     </dependency>	
-    <dependency>
-         <groupId>software.amazon.lambda</groupId>
-         <artifactId>powertools-idempotency-dynamodb</artifactId>
-         <version>${powertools.version}</version>
-    </dependency>
-	<dependency>
-	    <groupId>org.aspectj</groupId>
-	    <artifactId>aspectjrt</artifactId>
-	    <version>${aspectj.version}</version>
-	</dependency>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>software.amazon.awssdk</groupId>
+					<artifactId>netty-nio-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>software.amazon.awssdk</groupId>
+					<artifactId>apache-client</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-core</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-serialization</artifactId>
+			<version>1.1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-events</artifactId>
+			<version>3.14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>apache-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.lambda</groupId>
+			<artifactId>powertools-idempotency-dynamodb</artifactId>
+			<version>${powertools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.lambda</groupId>
+			<artifactId>powertools-logging</artifactId>
+			<version>${powertools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -96,25 +108,25 @@
 			<artifactId>aws-lambda-java-runtime-interface-client</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-    
-	<dependency>
-	    <groupId>com.fasterxml.jackson.dataformat</groupId>
-	    <artifactId>jackson-dataformat-xml</artifactId>
-	    <version>2.18.2</version>
-	</dependency>
-  </dependencies>  
-   
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>bom</artifactId>
-            <version>2.30.30</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.18.2</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>software.amazon.awssdk</groupId>
+				<artifactId>bom</artifactId>
+				<version>2.30.30</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<profiles>
 		<profile>
 			<id>native</id>
@@ -202,6 +214,10 @@
 							<aspectLibraries>
 								<aspectLibrary>
 									<groupId>software.amazon.lambda</groupId>
+									<artifactId>powertools-logging</artifactId>
+								</aspectLibrary>
+								<aspectLibrary>
+									<groupId>software.amazon.lambda</groupId>
 									<artifactId>powertools-idempotency-core</artifactId>
 								</aspectLibrary>
 							</aspectLibraries>
@@ -241,4 +257,5 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles></project>
+	</profiles>
+</project>
