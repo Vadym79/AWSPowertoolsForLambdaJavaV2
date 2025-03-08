@@ -2,7 +2,8 @@
   {
     "name": "com.amazonaws.xray.interceptors.TracingInterceptor",
     "allPublicConstructors": true,
-    "allDeclaredFields": true
+    "allDeclaredFields": true,
+    "allPublicMethods": true
   },
   {
     "name": "software.amazon.cloudwatchlogs.emf.logger.MetricsLogger",

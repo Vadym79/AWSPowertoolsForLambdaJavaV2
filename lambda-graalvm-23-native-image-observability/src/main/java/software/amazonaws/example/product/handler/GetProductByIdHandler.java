@@ -28,7 +28,7 @@ public class GetProductByIdHandler
 		implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
 	private static final ProductDao productDao = new DynamoProductDao();
-	private final ObjectMapper objectMapper = new ObjectMapper();
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 	
 	private final static Logger logger = LogManager.getLogger(GetProductByIdHandler.class);
 
