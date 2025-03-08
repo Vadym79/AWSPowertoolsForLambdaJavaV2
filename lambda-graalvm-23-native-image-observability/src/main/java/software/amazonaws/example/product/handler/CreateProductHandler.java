@@ -36,7 +36,10 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
     */
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		try {
+			context.getLogger().log("create product method invoked ");
+			context.getLogger().log("param "+requestEvent.getPathParameters());
 			String requestBody = requestEvent.getBody();
+			context.getLogger().log("body "+requestBody);
 			Product product = objectMapper.readValue(requestBody, Product.class);
 			context.getLogger().log("create product: "+product);
 			productDao.putProduct(product);
