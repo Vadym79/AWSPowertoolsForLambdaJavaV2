@@ -38,6 +38,7 @@ public class GetProductByIdHandler
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		String id = requestEvent.getPathParameters().get("id");
 		Optional<Product> optionalProduct = productDao.getProduct(id);
+		context.getLogger().log("got product by id: "+id+ " product: "+optionalProduct);
         try {
 			if (optionalProduct.isEmpty()) {
 				logger.info(" product with id " + id + " not found ");
