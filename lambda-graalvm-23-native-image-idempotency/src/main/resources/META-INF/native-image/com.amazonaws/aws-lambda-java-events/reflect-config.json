@@ -6,6 +6,12 @@
     "allPublicMethods": true
   },
   {
+    "name": "com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent",
+    "allPublicConstructors": true,
+    "allDeclaredFields": true,
+    "allPublicMethods": true
+  },
+  {
     "name": "com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent$ProxyRequestContext",
     "allPublicConstructors": true,
     "allDeclaredFields": true,
