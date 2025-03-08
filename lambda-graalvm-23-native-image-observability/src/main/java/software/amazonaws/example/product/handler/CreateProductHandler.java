@@ -31,13 +31,10 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
 	@Override
 	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
     @Tracing(namespace ="ProductAPINativeWithPowerTools", captureMode = CaptureMode.RESPONSE_AND_ERROR)
-    @Metrics(namespace = "ProductAPINativeWithPowerTools", service = "product-ativr", captureColdStart = true)
+    @Metrics(namespace = "ProductAPINativeWithPowerTools", service = "product-native", captureColdStart = true)
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		try {
-			context.getLogger().log("create product method invoked ");
-			context.getLogger().log("param "+requestEvent.getPathParameters());
 			String requestBody = requestEvent.getBody();
-			context.getLogger().log("body "+requestBody);
 			Product product = objectMapper.readValue(requestBody, Product.class);
 			context.getLogger().log("create product: "+product);
 			productDao.putProduct(product);
