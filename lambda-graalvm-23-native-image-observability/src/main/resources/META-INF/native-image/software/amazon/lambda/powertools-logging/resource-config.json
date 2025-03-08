@@ -1,0 +1,13 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "LambdaJsonLayout.json\\E"
+      },
+      {
+        "pattern": "LambdaEcsLayout.json\\E"
+      }
+    ]
+  },
+  "bundles": []
+}
