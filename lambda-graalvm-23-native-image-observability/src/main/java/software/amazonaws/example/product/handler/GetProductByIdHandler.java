@@ -36,9 +36,7 @@ public class GetProductByIdHandler
 	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
     @Tracing(namespace ="ProductAPINativeWithPowerTools", captureMode = CaptureMode.RESPONSE_AND_ERROR)
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
-		context.getLogger().log("got product by id");
 		String id = requestEvent.getPathParameters().get("id");
-		context.getLogger().log("got product by id: "+id);
 		Optional<Product> optionalProduct = productDao.getProduct(id);
 		context.getLogger().log("got product by id: "+id+ " product: "+optionalProduct);
         try {
