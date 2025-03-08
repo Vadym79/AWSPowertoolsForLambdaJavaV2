@@ -15,6 +15,8 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import software.amazon.awssdk.http.HttpStatusCode;
+import software.amazon.lambda.powertools.logging.CorrelationIdPaths;
+import software.amazon.lambda.powertools.logging.Logging;
 import software.amazonaws.example.product.dao.DynamoProductDao;
 import software.amazonaws.example.product.dao.ProductDao;
 import software.amazonaws.example.product.entity.Product;
@@ -28,6 +30,7 @@ public class GetProductByIdHandler
 	private final static Logger logger = LogManager.getLogger(GetProductByIdHandler.class);
 
 	@Override
+	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		String id = requestEvent.getPathParameters().get("id");
 		Optional<Product> optionalProduct = productDao.getProduct(id);

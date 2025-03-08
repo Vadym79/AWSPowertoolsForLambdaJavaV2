@@ -14,6 +14,8 @@ import software.amazon.lambda.powertools.idempotency.Idempotency;
 import software.amazon.lambda.powertools.idempotency.IdempotencyConfig;
 import software.amazon.lambda.powertools.idempotency.Idempotent;
 import software.amazon.lambda.powertools.idempotency.persistence.dynamodb.DynamoDBPersistenceStore;
+import software.amazon.lambda.powertools.logging.CorrelationIdPaths;
+import software.amazon.lambda.powertools.logging.Logging;
 import software.amazonaws.example.product.dao.DynamoDbClientInitializer;
 import software.amazonaws.example.product.dao.DynamoProductDao;
 import software.amazonaws.example.product.dao.ProductDao;
@@ -40,6 +42,7 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
 
 	@Override
 	@Idempotent
+	@Logging(logEvent = true, logResponse = true, samplingRate = 0.5, correlationIdPath = CorrelationIdPaths.API_GATEWAY_REST)
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		try {
 			String requestBody = requestEvent.getBody();
