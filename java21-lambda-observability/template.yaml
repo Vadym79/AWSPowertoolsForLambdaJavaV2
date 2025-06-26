@@ -27,7 +27,8 @@ Globals:
       Variables:
         JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
         POWERTOOLS_LOG_LEVEL: INFO
-        #POWERTOOLS_SERVICE_NAME: product-service
+        POWERTOOLS_SERVICE_NAME: product-service
+        #POWERTOOLS_METRICS_NAMESPACE: product-service-metrics
         PRODUCT_TABLE_NAME: !Ref ProductsTable
           
 
