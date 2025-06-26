@@ -8,7 +8,7 @@ I also provide ideas how to prime Powertools idempotency functionality with Lamb
 ## Architecture
 
 <p align="center">
-  <img src="/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
+  <img src="/java21-lambda-idempotency/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
 </p>
 
 
