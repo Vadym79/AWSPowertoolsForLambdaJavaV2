@@ -10,6 +10,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.amazonaws.services.lambda.runtime.serialization.events.LambdaEventSerializers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import software.amazon.awssdk.http.HttpStatusCode;
@@ -45,10 +46,17 @@ RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>, Resou
 
 	@Override
 	public void beforeCheckpoint(org.crac.Context<? extends Resource> context) throws Exception {
-		APIGatewayProxyRequestEvent requestEvent = new APIGatewayProxyRequestEvent();
-		final String json = "{\"id\":0, \"name\": \"Print 10x13\", \"price\":0.15}";
-		requestEvent.setBody(json);
+		APIGatewayProxyRequestEvent requestEvent = LambdaEventSerializers.serializerFor(APIGatewayProxyRequestEvent.class, ClassLoader.getSystemClassLoader())
+				.fromJson(getAPIGatewayProxyRequestEventAsJson());
 		this.handleRequest(requestEvent, new MockLambdaContext());
+    }
+	
+    private static String getAPIGatewayProxyRequestEventAsJson() throws Exception{
+    	final APIGatewayProxyRequestEvent proxyRequestEvent = new APIGatewayProxyRequestEvent ();
+    	proxyRequestEvent.setHttpMethod("PUT");
+    	final String json = "{\"id\":0, \"name\": \"Print 10x13\", \"price\":0.15}";
+		proxyRequestEvent.setBody(json);
+    	return objectMapper.writeValueAsString(proxyRequestEvent);		
     }
 	
 	@Override
