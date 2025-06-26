@@ -9,7 +9,7 @@ I also provide ideas how to prime Powertools functionality with Lambda SnapStart
 ## Architecture
 
 <p align="center">
-  <img src="/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
+  <img src="/java21-lambda-observability/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
 </p>
 
 
