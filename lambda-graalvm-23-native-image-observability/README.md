@@ -2,8 +2,8 @@
 
 This repository provides some example of using Powertools for AWS Lambda (Java) v2 and especially observability features like 
 @Logging, @Tracing and @FlushMetrics.  
-I also provide ideas how to prime Powertools functionality with Lambda SnapStart as using such features increases the startup time/cold start of such Lambda functions 
-This artifact is deployable as a Lambda Custom Runtime consisting of GraalVM Native Image
+I also provide ideas how to prime Powertools functionality with Lambda SnapStart as using such features increases the startup time/cold start of such Lambda functions.   
+This artifact is deployable as a Lambda Custom Runtime consisting of GraalVM Native Image.  
 
 
 ## Architecture
