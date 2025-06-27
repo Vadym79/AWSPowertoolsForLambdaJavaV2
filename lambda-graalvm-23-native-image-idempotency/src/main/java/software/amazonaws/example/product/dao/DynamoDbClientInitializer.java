@@ -7,7 +7,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 public class DynamoDbClientInitializer {
 	 public static final DynamoDbClient DYNAMO_DB_CLIENT = DynamoDbClient.builder()
-			    .credentialsProvider(DefaultCredentialsProvider.create())
+			    .credentialsProvider(DefaultCredentialsProvider.builder().build())
 			    .region(Region.EU_CENTRAL_1)
 			    //.httpClient(UrlConnectionHttpClient.create())
 			    .overrideConfiguration(ClientOverrideConfiguration.builder()
