@@ -1,8 +1,8 @@
 # Experimenting with observability feature of the Powertools for AWS Lambda (Java) v2
 
 This repository provides some example of using Powertools for AWS Lambda (Java) v2 and especially idempotency feature @Idempotent.  
-I also provide ideas how to prime Powertools idempotency functionality with Lambda SnapStart as using such a feature increases the startup time/cold start of such Lambda functions 
-This artifact is deployable as a Lambda Custom Runtime consisting of GraalVM Native Image
+I also provide ideas how to prime Powertools idempotency functionality with Lambda SnapStart as using such a feature increases the startup time/cold start of such Lambda functions.   
+This artifact is deployable as a Lambda Custom Runtime consisting of GraalVM Native Image.  
 
 
 ## Architecture
