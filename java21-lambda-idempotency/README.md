@@ -50,13 +50,11 @@ Please also check you API Key. I'll need both: API Gateway Endpoint URL and API 
 
 3.1) In the "Request Body" below enter
 
-[
-    {
-      "id": 1,
-      "name": "Print 10x13",
-      "price": 0.15
-    }
-]
+    {  
+      "id": 1,  
+      "name": "Print 10x13",  
+      "price": 0.15  
+    }  
 
 3.2) Click on the "Test" button and check that the result was HTTP 200. Also go into the DynamoDB ProductTable and check the created items there
 3.3) All the CreateProduct* Lambda functions from the package software.amazonaws.example.product.handler use different priming technique of Lambda SnpaStart  
